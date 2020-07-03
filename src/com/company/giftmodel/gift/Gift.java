@@ -45,8 +45,8 @@ public abstract class Gift {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Gift gift = (Gift) o;
-        return Objects.equals(name, gift.name) &&
-                Objects.equals(packing, gift.packing);
+        return name.equals(gift.name) &&
+                packing.equals(gift.packing);
     }
 
     @Override

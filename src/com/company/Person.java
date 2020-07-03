@@ -103,9 +103,9 @@ public abstract class Person {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
         return age == person.age &&
-                Objects.equals(surname, person.surname) &&
-                Objects.equals(name, person.name) &&
-                Objects.equals(patronymic, person.patronymic) &&
+                surname.equals(person.surname) &&
+                name.equals(person.name) &&
+                patronymic.equals(person.patronymic) &&
                 sex == person.sex;
     }
 

@@ -1,7 +1,5 @@
 package com.company.giftmodel.sweetness;
 
-import java.util.Objects;
-
 public abstract class Sweetness {
 
     private String name;
@@ -53,13 +51,17 @@ public abstract class Sweetness {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sweetness sweetness = (Sweetness) o;
-        return Double.compare(sweetness.weight, weight) == 0 &&
-                Objects.equals(name, sweetness.name) &&
-                Objects.equals(manufacturer, sweetness.manufacturer);
+        return name.equals(sweetness.name) &&
+                manufacturer.equals(sweetness.manufacturer)
+                && Double.compare(sweetness.weight, weight) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, manufacturer, weight);
+        int result = 17;
+        result = 37 * result + (name != null ? name.hashCode() : 0);
+        result = 37 * result + (manufacturer != null ? manufacturer.hashCode() : 0);
+        result = 37 * result + Double.hashCode(weight);
+        return result;
     }
 }

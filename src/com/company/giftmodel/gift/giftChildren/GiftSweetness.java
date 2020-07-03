@@ -14,5 +14,4 @@ public class GiftSweetness extends Gift {
         super(name, packing);
     }
 
-
 }

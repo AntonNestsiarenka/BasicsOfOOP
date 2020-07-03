@@ -7,6 +7,7 @@ import com.company.giftmodel.sweetness.sweetnessChildren.Chocolate;
 import com.company.giftmodel.sweetness.sweetnessChildren.Halva;
 import com.company.giftmodel.sweetness.sweetnessChildren.Marshmallow;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -112,8 +113,8 @@ public class GiftSweetnessPacking extends GiftPacking {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        GiftSweetnessPacking that = (GiftSweetnessPacking) o;
-        return Objects.equals(sweetness, that.sweetness);
+        GiftSweetnessPacking giftSweetnessPacking = (GiftSweetnessPacking) o;
+        return sweetness.equals(giftSweetnessPacking.sweetness);
     }
 
     @Override

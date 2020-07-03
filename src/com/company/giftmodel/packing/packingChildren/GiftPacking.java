@@ -31,8 +31,8 @@ public abstract class GiftPacking extends Packing {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        GiftPacking that = (GiftPacking) o;
-        return typeOfGiftPacking == that.typeOfGiftPacking;
+        GiftPacking giftPacking = (GiftPacking) o;
+        return typeOfGiftPacking == giftPacking.typeOfGiftPacking;
     }
 
     @Override

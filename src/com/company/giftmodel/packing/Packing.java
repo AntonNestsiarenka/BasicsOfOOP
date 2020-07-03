@@ -1,7 +1,5 @@
 package com.company.giftmodel.packing;
 
-import java.util.Objects;
-
 public abstract class Packing {
 
     private double maxWeight;
@@ -36,6 +34,6 @@ public abstract class Packing {
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxWeight);
+        return Double.hashCode(maxWeight);
     }
 }
