@@ -2,7 +2,9 @@ package com.company.paymentmodel;
 
 import java.util.ArrayList;
 
-public class Payment {
+public final class Payment {
+
+    /* Класс описывает корзину товаров. */
 
     private double commonPriceOfProducts;
     private ArrayList<ProductInPayment> productsInPayment;
@@ -15,6 +17,8 @@ public class Payment {
 
     public class ProductInPayment {
 
+        /* Внутренний класс описывает товар в корзине. */
+
         private Product product;
         private int count;
 
@@ -26,7 +30,7 @@ public class Payment {
         public ProductInPayment(Product product, int count)
         {
             this.product = product;
-            this.count = count;
+            this.count = (count > 0) ? count : 1;
         }
 
         public void incrementCount()
@@ -78,26 +82,32 @@ public class Payment {
     public void addProductInPayment(Product product)
     {
         productsInPayment.add(new ProductInPayment(product));
+        recalculateCommonPriceInPayment();
     }
 
     public void addProductInPayment(Product product, int count)
     {
         productsInPayment.add(new ProductInPayment(product, count));
+        recalculateCommonPriceInPayment();
     }
 
     public void removeProductFromPayment(ProductInPayment productInPayment)
     {
-        productsInPayment.remove(productInPayment);
+        // Удаляет из корзины товар.
+        if (productsInPayment.remove(productInPayment))
+            recalculateCommonPriceInPayment();
     }
 
     public void clearPayment()
     {
+        // Очищает корзину товаров.
         productsInPayment.clear();
-        commonPriceOfProducts = 0;
+        recalculateCommonPriceInPayment();
     }
 
     public ProductInPayment findProductById(Product product)
     {
+        // Поиск товара в корзине. Возвращает объект ProductInPayment если такой объект есть либо null если нет.
         for (ProductInPayment productInPayment : productsInPayment)
         {
             if (productInPayment.getProduct().getId() == product.getId())
@@ -108,10 +118,13 @@ public class Payment {
 
     public void recalculateCommonPriceInPayment()
     {
+        // Пересчет стоимости корзины товаров.
+        double tempCommonPriceOfProducts = 0;
         for (ProductInPayment productInPayment : productsInPayment)
         {
-            commonPriceOfProducts += (productInPayment.product.getPrice() * productInPayment.count);
+            tempCommonPriceOfProducts += (productInPayment.product.getPrice() * productInPayment.count);
         }
+        commonPriceOfProducts = tempCommonPriceOfProducts;
     }
 
     @Override
@@ -121,7 +134,7 @@ public class Payment {
         {
             newStr.append(productInPayment.toString() + '\n');
         }
-        newStr.append("Total price of products: " + String.valueOf(getCommonPriceOfProducts()));
+        newStr.append("Total price of products: " + getCommonPriceOfProducts());
         return newStr.toString();
     }
 

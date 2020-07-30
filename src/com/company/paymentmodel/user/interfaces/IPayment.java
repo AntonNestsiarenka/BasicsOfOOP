@@ -1,8 +1,12 @@
-package com.company.paymentmodel;
+package com.company.paymentmodel.user.interfaces;
 
 import Utils.MyException;
+import com.company.paymentmodel.Payment;
+import com.company.paymentmodel.Product;
 
 public interface IPayment {
+
+    /* Интерфейс для работы с корзиной товаров. */
 
     void addToPayment(Product product);
 

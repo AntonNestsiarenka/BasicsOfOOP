@@ -1,6 +1,8 @@
 package Utils;
 
-public class GenerationUtils {
+public final class GenerationUtils {
+
+    /* Различные генеративные методы. */
 
     public static int randInt(int lowLimit, int highLimit)
     {
@@ -29,7 +31,7 @@ public class GenerationUtils {
     }
 
     public static int[] createAndFill1DArrayRandom(int size, int limitA, int limitB) {
-        // Функция создает целочисленный массив размерности size и заполняет его случайными значениями от [limitA, limitB].
+        // Метод создает целочисленный массив размерности size и заполняет его случайными значениями от [limitA, limitB].
         int array[] = new int[size];
         for (int i = 0; i < size; i++)
             array[i] = randInt(limitA, limitB);
@@ -37,7 +39,7 @@ public class GenerationUtils {
     }
 
     public static double[] createAndFill1DArrayRandom(int size, double limitA, double limitB) {
-        // Функция создает массив действительных чисел размерности size и заполняет его случайными значениями от [limitA, limitB).
+        // Метод создает массив действительных чисел размерности size и заполняет его случайными значениями от [limitA, limitB).
         double array[] = new double[size];
         for (int i = 0; i < size; i++)
             array[i] = uniform(limitA, limitB);

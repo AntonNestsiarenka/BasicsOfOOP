@@ -1,6 +1,11 @@
-package com.company.textfilemodel;
+package com.company.textfilemodel.file.children;
 
-public class TextFile extends File<String> {
+import com.company.textfilemodel.directory.Directory;
+import com.company.textfilemodel.file.File;
+
+public final class TextFile extends File<String> {
+
+    /* Класс описывает текстовый файл. */
 
     private TextFile(String fileName, Directory directory)
     {
@@ -16,6 +21,8 @@ public class TextFile extends File<String> {
 
     public static TextFile createTextFile(String fileName, Directory directory)
     {
+        /* Создает текстовый в заданной директории. Если такое имя уже есть дописывает в конец число, чтобы файл
+           был уникальным. */
         if (directory.getFileByName(fileName) == null)
         {
             return new TextFile(fileName, directory);
@@ -35,6 +42,8 @@ public class TextFile extends File<String> {
 
     public static TextFile createTextFile(String fileName, String content, Directory directory)
     {
+        /* Создает текстовый в заданной директории с заданным контентом. Если такое имя уже есть дописывает в конец
+           число, чтобы файл был уникальным. */
         if (directory.getFileByName(fileName) == null)
         {
             return new TextFile(fileName, content, directory);
@@ -53,7 +62,18 @@ public class TextFile extends File<String> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public void addContentToFile(String content) {
+        // Добавляет некоторый текст в файл.
         if (this.getContent() == null)
             this.setContent(content);
         else
@@ -62,11 +82,13 @@ public class TextFile extends File<String> {
 
     @Override
     public void clearContentOfFile() {
+        // Очищает содержимое текстового файла.
         setContent("");
     }
 
     @Override
     public void printContentOfFile() {
+        // Выводит содержимое файла.
         System.out.println(getContent());
     }
 }

@@ -1,5 +1,6 @@
 package com.company.giftmodel.packing;
 
+import com.company.giftmodel.packing.factorys.GiftPackingFactory;
 import com.company.giftmodel.packing.factorys.GiftSweetnessPackingFactory;
 import com.company.giftmodel.packing.packingChildren.GiftPacking;
 import com.company.giftmodel.packing.packingChildren.giftPackingChildren.GiftSweetnessPacking;
@@ -57,30 +58,17 @@ public class StorageGiftSweetnessPacking {
             fileReader = new FileReader("giftsweetnesspackingdata.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return;
         }
         Scanner scanner = new Scanner(fileReader);
-        GiftSweetnessPackingFactory giftSweetnessPackingFactory = new GiftSweetnessPackingFactory();
+        GiftPackingFactory giftPackingFactory = new GiftSweetnessPackingFactory();
         while (scanner.hasNextLine()) {
             String[] str = scanner.nextLine().trim().split(" \\| ");
-            GiftPacking.TypeOfGiftPacking typeOfGiftPacking = GiftPacking.TypeOfGiftPacking.CARDBOARD;
-            if (str[0].equals(GiftPacking.TypeOfGiftPacking.CARDBOARD.getTypeOfGiftPacking()))
-            {
-                typeOfGiftPacking = GiftPacking.TypeOfGiftPacking.CARDBOARD;
-            }
-            else if (str[0].equals(GiftPacking.TypeOfGiftPacking.TEXTILE.getTypeOfGiftPacking()))
-            {
-                typeOfGiftPacking = GiftPacking.TypeOfGiftPacking.TEXTILE;
-            }
-            else if (str[0].equals(GiftPacking.TypeOfGiftPacking.METAL.getTypeOfGiftPacking()))
-            {
-                typeOfGiftPacking = GiftPacking.TypeOfGiftPacking.METAL;
-            }
-            else if (str[0].equals(GiftPacking.TypeOfGiftPacking.WOODEN.getTypeOfGiftPacking()))
-            {
-                typeOfGiftPacking = GiftPacking.TypeOfGiftPacking.WOODEN;
-            }
             for (int i = 1; i < str.length; i++) {
-                giftSweetnessPackings.add(giftSweetnessPackingFactory.createGiftPacking(Double.valueOf(str[i]), typeOfGiftPacking));
+                GiftSweetnessPacking giftSweetnessPacking = (GiftSweetnessPacking) giftPackingFactory.createGiftPacking();
+                giftSweetnessPacking.setTypeOfGiftPacking(GiftPacking.TypeOfGiftPacking.valueOf(str[0].toUpperCase()));
+                giftSweetnessPacking.setMaxWeight(Double.valueOf(str[i]));
+                giftSweetnessPackings.add(giftSweetnessPacking);
             }
         }
     }
@@ -91,7 +79,7 @@ public class StorageGiftSweetnessPacking {
         int i = 1;
         for (GiftSweetnessPacking giftSweetnessPacking : giftSweetnessPackings)
         {
-            System.out.println(String.valueOf(i) + ". " + giftSweetnessPacking.toString());
+            System.out.println(i + ". " + giftSweetnessPacking.toString());
             i++;
         }
     }

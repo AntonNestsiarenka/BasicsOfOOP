@@ -1,7 +1,8 @@
-package com.company.dragontreasuremodel;
+package com.company.dragontreasuremodel.treasure.generator;
 
 import Utils.GenerationUtils;
 import Utils.MyException;
+import com.company.dragontreasuremodel.treasure.Treasure;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public final class GeneratorTreasures {
+
+    /* Генератор сокровищ. */
 
     private static ArrayList<String> namesOfTreasures;
 

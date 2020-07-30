@@ -6,8 +6,6 @@ import com.company.giftmodel.sweetness.sweetnessChildren.Candy;
 import com.company.giftmodel.sweetness.sweetnessChildren.Chocolate;
 import com.company.giftmodel.sweetness.sweetnessChildren.Halva;
 import com.company.giftmodel.sweetness.sweetnessChildren.Marshmallow;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -80,7 +78,7 @@ public class GiftSweetnessPacking extends GiftPacking {
             if (addSweetness(sweetness)) {
                 count++;
             } else {
-                System.out.println("Сладость " + sweetness.getName() + " не добавлена в подарочную упаковку. Упаковка заполнена полностью.");
+                System.out.println("Sweetness " + sweetness.getName() + " not added as a gift. Gift wrap is full.");
                 break;
             }
         }

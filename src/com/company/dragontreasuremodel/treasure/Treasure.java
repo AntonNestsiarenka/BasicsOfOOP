@@ -1,6 +1,8 @@
-package com.company.dragontreasuremodel;
+package com.company.dragontreasuremodel.treasure;
 
-public class Treasure implements Comparable<Treasure>{
+public class Treasure implements Comparable<Treasure> {
+
+    /* Класс описывает сокровище. */
 
     private String name;
     double price; // usd

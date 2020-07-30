@@ -1,19 +1,23 @@
 package com.company;
 
-import Utils.InputOutputUtils;
 import Utils.MyException;
 import com.company.calendarmodel.Calendar;
 import com.company.calendarmodel.Month;
-import com.company.dragontreasuremodel.Cave;
-import com.company.dragontreasuremodel.Dragon;
-import com.company.dragontreasuremodel.GeneratorTreasures;
-import com.company.giftmodel.Client;
+import com.company.comon.Person;
+import com.company.dragontreasuremodel.cave.Cave;
+import com.company.dragontreasuremodel.dragon.Dragon;
+import com.company.dragontreasuremodel.treasure.generator.GeneratorTreasures;
+import com.company.dragontreasuremodel.menu.Menu;
+import com.company.giftmodel.client.Client;
+import com.company.giftmodel.menu.MenuApp;
 import com.company.giftmodel.packing.StorageGiftSweetnessPacking;
 import com.company.giftmodel.sweetness.StorageSweetness;
 import com.company.paymentmodel.Product;
-import com.company.paymentmodel.User;
-import com.company.textfilemodel.Directory;
-import com.company.textfilemodel.TextFile;
+import com.company.paymentmodel.user.User;
+import com.company.textfilemodel.directory.Directory;
+import com.company.textfilemodel.file.children.TextFile;
+
+import java.util.Scanner;
 
 public class Main {
 
@@ -140,6 +144,7 @@ public class Main {
            Дракон и его сокровища. Создать программу, позволяющую обрабатывать сведения о 100 сокровищах в пещере
            дракона. Реализовать возможность просмотра сокровищ, выбора самого дорогого по стоимости сокровища и выбора
            сокровищ на заданную сумму. */
+        Scanner scanner = new Scanner(System.in);
         Cave cave = new Cave("Пещера гигантов");
         Dragon dragon = new Dragon("Дрогон", cave);
         GeneratorTreasures generatorTreasures = new GeneratorTreasures();
@@ -151,56 +156,8 @@ public class Main {
                 e.printStackTrace();
             }
         }
-        boolean flag = true;
-        System.out.println("Меню доступных команд для ввода в консоль:\n" +
-                "1. showAllTreasures\n" +
-                "2. showMostExpensiveTreasure\n" +
-                "3. showTreasuresBySetPrice\n" +
-                "4. help\n" +
-                "5. quit");
-        while (flag)
-        {
-            String command = InputOutputUtils.inputLine("Введите команду: ").toLowerCase();
-            switch (command)
-            {
-                case ("showalltreasures"):
-                {
-                    cave.printAllTreasures();
-                    break;
-                }
-                case ("showmostexpensivetreasure"):
-                {
-                    cave.printMostExpensiveTreasure();
-                    break;
-                }
-                case ("showtreasuresbysetprice"):
-                {
-                    double sum = InputOutputUtils.inputUDouble("Введите требуемую сумму: ");
-                    cave.printTreasuresBySetPrice(sum);
-                    break;
-                }
-                case ("help"):
-                {
-                    System.out.println("Меню доступных команд для ввода в консоль:\n" +
-                            "1. showAllTreasures - выводит в консоль информацию о всех сокровищах в пещере дракона.\n" +
-                            "2. showMostExpensiveTreasure - выводит в консоль информацию о самом дорогом сокровище в пещере дракона.\n" +
-                            "3. showTreasuresBySetPrice - делает выборку сокровищ на заданную пользователем сумму и выводит информацию в консоль.\n" +
-                            "4. help - выводит в консоль информацию о всех доступных командах данного приложения.\n" +
-                            "5. quit - завершает работу программы.\n" +
-                            "Команды можно вводить без учета регистра.");
-                    break;
-                }
-                case ("quit"):
-                {
-                    flag = false;
-                    break;
-                }
-                default:
-                {
-                    System.out.println("Введенная команда недоступна. Чтобы посмотреть список доступных команд введите в консоль команду help");
-                }
-            }
-        }
+        Menu menu = new Menu(cave, scanner);
+        menu.mainMenu();
     }
 
     public static void task5()
@@ -220,62 +177,8 @@ public class Main {
         StorageGiftSweetnessPacking storageGiftSweetnessPacking = StorageGiftSweetnessPacking.createInstance();
         storageSweetness.storageSweetnessInit();
         storageGiftSweetnessPacking.storageGiftSweetnessPackingInit();
-        boolean flag = true;
-        System.out.println("Меню доступных команд для ввода в консоль:\n" +
-                "1. createGiftSweetness\n" +
-                "2. createGiftSweetnessMix\n" +
-                "3. printInfoMyGifts\n" +
-                "4. clearMyGifts\n" +
-                "5. help\n" +
-                "6. quit");
-        while (flag)
-        {
-            String command = InputOutputUtils.inputLine("Введите команду: ").toLowerCase();
-            switch (command)
-            {
-                case ("creategiftsweetness"):
-                {
-                    client.createGiftSweetness();
-                    break;
-                }
-                case ("creategiftsweetnessmix"):
-                {
-                    client.createGiftSweetnessMix();
-                    break;
-                }
-                case ("printinfomygifts"):
-                {
-                    client.printInfo();
-                    break;
-                }
-                case ("clearmygifts"):
-                {
-                    client.clearGiftsSweetness();
-                    break;
-                }
-                case ("help"):
-                {
-                    System.out.println("Меню доступных команд для ввода в консоль:\n" +
-                            "1. createGiftSweetness - создать подарок и заполнить его сладостями по выбору пользователя.\n" +
-                            "2. createGiftSweetnessMix - создать подарок и заполнить его сладостями случайным образом.\n" +
-                            "3. printInfoMyGifts - вывести в консоль всю информацию обо всех созданных пользователем подарках.\n" +
-                            "4. clearMyGifts - удалить все подарки созданные пользователем.\n" +
-                            "5. help - вывести в консоль информацию о всех доступных командах данного приложения.\n" +
-                            "6. quit - завершает работу программы.\n" +
-                            "Команды можно вводить без учета регистра.");
-                    break;
-                }
-                case ("quit"):
-                {
-                    flag = false;
-                    break;
-                }
-                default:
-                {
-                    System.out.println("Введенная команда недоступна. Чтобы посмотреть список доступных команд введите в консоль команду help");
-                }
-            }
-        }
+        MenuApp menu = new MenuApp(client, storageSweetness, storageGiftSweetnessPacking);
+        menu.mainMenu();
     }
 
     public static void main(String[] args) {

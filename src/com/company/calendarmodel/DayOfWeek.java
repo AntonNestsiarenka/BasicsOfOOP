@@ -1,6 +1,6 @@
 package com.company.calendarmodel;
 
-public enum  DayOfWeek {
+public enum DayOfWeek {
 
     SUNDAY ("Sunday", 1),
     MONDAY ("Monday", 2),

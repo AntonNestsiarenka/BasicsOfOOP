@@ -1,9 +1,14 @@
-package com.company.dragontreasuremodel;
+package com.company.dragontreasuremodel.cave;
+
+import com.company.dragontreasuremodel.dragon.Dragon;
+import com.company.dragontreasuremodel.treasure.Treasure;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
 
 public class Cave {
+
+    /* Класс описывает пещеру дракона. */
 
     private String name;
     private Dragon dragon;

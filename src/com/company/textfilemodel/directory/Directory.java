@@ -1,8 +1,12 @@
-package com.company.textfilemodel;
+package com.company.textfilemodel.directory;
+
+import com.company.textfilemodel.file.File;
 
 import java.util.ArrayList;
 
-public class Directory {
+public final class Directory {
+
+    /* Класс описывает папку с файлами. */
 
     private String directoryName;
     private ArrayList<File> files;
@@ -53,6 +57,7 @@ public class Directory {
 
     public File getFileByName(String fileName)
     {
+        // Возвращает файл если файл с заданным именем присутствует в папке либо null если нет.
         File fileFound = null;
         for (File file : files)
         {
@@ -75,6 +80,7 @@ public class Directory {
 
     public void printAllFileNames()
     {
+        // Выводит все имена файлов в папке.
         for (File file : files)
         {
             file.printFileName();
@@ -88,6 +94,7 @@ public class Directory {
 
     public void printDirectoryInfo()
     {
+        // Выводит всю информацию о папке.
         System.out.println("Name of directory: " + directoryName);
         for (File file : files)
         {

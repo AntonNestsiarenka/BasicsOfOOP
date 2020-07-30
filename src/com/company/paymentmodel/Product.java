@@ -1,10 +1,14 @@
 package com.company.paymentmodel;
 
-public class Product {
+import java.util.Objects;
+
+public final class Product {
+
+    /* Класс описывает товар интернет магазина. */
 
     private static long idUnique = 0;
 
-    private long id;
+    private final long id;
     private String name;
     private String description;
     private double price; // usd
@@ -21,11 +25,6 @@ public class Product {
         id = idUnique++;
         this.name = name;
         this.description = description;
-        this.price = price;
-    }
-
-    public Product(String name, double price) {
-        this.name = name;
         this.price = price;
     }
 
@@ -67,6 +66,19 @@ public class Product {
                 + " | " + getName()
                 + " | " + getDescription()
                 + " | " + getPrice() + " USD";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public void printInfo()

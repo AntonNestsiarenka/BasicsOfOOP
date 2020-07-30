@@ -1,6 +1,8 @@
 package com.company.calendarmodel;
 
-public class DisplayCalendar {
+public final class DisplayCalendar {
+
+    /* Класс форм отображения календаря. */
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -8,15 +10,9 @@ public class DisplayCalendar {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_BLUE = "\u001B[34m";
 
-    private Calendar calendar;
-
-    DisplayCalendar(Calendar calendar)
+    public static void showMonthForm(Month month)
     {
-        this.calendar = calendar;
-    }
-
-    public void showMonthForm(Month month)
-    {
+        // Выводит в консоль форму дней недели для заданного месяца.
         System.out.printf(ANSI_CYAN + "%21.9s" + ANSI_RESET + "\n\n", month.getNameOfMonth());
         String [] namesOfDays = new String[] {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         System.out.print(ANSI_RED + namesOfDays[0] + "   " + ANSI_RESET);
@@ -28,9 +24,9 @@ public class DisplayCalendar {
         System.out.println();
     }
 
-    public void showCalendarForm()
+    public static void showCalendarForm(Calendar calendar)
     {
+        // Выводит в консоль год заданного календаря.
         System.out.printf(ANSI_BLUE + "%25.14s" + ANSI_RESET + "\n\n", calendar.getYear() + " calendar");
     }
-
 }

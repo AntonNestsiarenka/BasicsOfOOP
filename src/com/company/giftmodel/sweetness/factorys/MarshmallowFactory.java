@@ -6,7 +6,7 @@ import com.company.giftmodel.sweetness.Sweetness;
 public class MarshmallowFactory implements SweetnessFactory {
 
     @Override
-    public Sweetness createSweetness() {
+    public Marshmallow createSweetness() {
         return new Marshmallow();
     }
 }

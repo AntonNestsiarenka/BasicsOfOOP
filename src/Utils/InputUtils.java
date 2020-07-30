@@ -3,99 +3,101 @@ package Utils;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class InputOutputUtils {
+public final class InputUtils {
 
-    public static int inputNaturalNumber(String str) {
-        // Функция для ввода натурального числа из консоли.
+    /* Методы ввода различных значений из консоли. */
+
+    public static int inputNaturalNumber(String str, Scanner scanner) {
+        // Метод для ввода натурального числа из консоли.
         System.out.print(str);
-        Scanner in = new Scanner(System.in);
         int number;
         try {
-            number = in.nextInt();
+            number = scanner.nextInt();
         }
         catch (InputMismatchException e)
         {
             System.out.println("Введенные данные некорректны. На ввод ожидается целое число.");
-            return inputNaturalNumber(str);
+            scanner.nextLine();
+            return inputNaturalNumber(str, scanner);
         }
         if (number > 0)
             return number;
         System.out.println("Число должно быть > 0.");
-        return inputNaturalNumber(str);
+        return inputNaturalNumber(str, scanner);
     }
 
-    public static int inputUInt(String str) {
-        // Функция для ввода целочисленного положительного значения из консоли.
+    public static int inputUInt(String str, Scanner scanner) {
+        // Метод для ввода целочисленного положительного значения из консоли.
         System.out.print(str);
-        Scanner in = new Scanner(System.in);
         int number;
         try {
-            number = in.nextInt();
+            number = scanner.nextInt();
         }
         catch (InputMismatchException e)
         {
             System.out.println("Введенные данные некорректны. На ввод ожидается целое число.");
-            return inputUInt(str);
+            scanner.nextLine();
+            return inputUInt(str, scanner);
         }
         if (number >= 0)
             return number;
         System.out.println("Число должно быть положительным.");
-        return inputUInt(str);
+        return inputUInt(str, scanner);
     }
 
-    public static int inputInt(String str) {
-        // Функция для ввода целочисленного значения из консоли.
+    public static int inputInt(String str, Scanner scanner) {
+        // Метод для ввода целочисленного значения из консоли.
         System.out.print(str);
-        Scanner in = new Scanner(System.in);
         int number;
         try {
-            number = in.nextInt();
+            number = scanner.nextInt();
         }
         catch (InputMismatchException e)
         {
             System.out.println("Введенные данные некорректны. На ввод ожидается целое число.");
-            return inputInt(str);
+            scanner.nextLine();
+            return inputInt(str, scanner);
         }
         return number;
     }
 
-    public static double inputDouble(String str) {
-        // Функция для ввода действительного значения из консоли.
+    public static double inputDouble(String str, Scanner scanner) {
+        // Метод для ввода действительного значения из консоли.
         System.out.print(str);
-        Scanner in = new Scanner(System.in);
         double number;
         try {
-            number = in.nextDouble();
+            number = scanner.nextDouble();
         }
         catch (InputMismatchException e)
         {
             System.out.println("Введенные данные некорректны. На ввод ожидается действительное число.");
-            return inputDouble(str);
+            scanner.nextLine();
+            return inputDouble(str, scanner);
         }
         return number;
     }
 
-    public static double inputUDouble(String str) {
-        // Функция для ввода действительного положительного значения из консоли.
+    public static double inputUDouble(String str, Scanner scanner) {
+        // Метод для ввода действительного положительного значения из консоли.
         System.out.print(str);
-        Scanner in = new Scanner(System.in);
         double number;
         try {
-            number = in.nextDouble();
+            number = scanner.nextDouble();
         }
         catch (InputMismatchException e)
         {
             System.out.println("Введенные данные некорректны. На ввод ожидается действительное число.");
-            return inputUDouble(str);
+            scanner.nextLine();
+            return inputUDouble(str, scanner);
         }
         if (number >= 0)
             return number;
         System.out.println("Число должно быть положительным.");
-        return inputUDouble(str);
+        return inputUDouble(str, scanner);
     }
 
     public static String inputLine(String str) {
-        // Функция для ввода строки из консоли.
+        // Метод для ввода строки из консоли.
         System.out.print(str);
         Scanner in = new Scanner(System.in);
         String text = in.nextLine();

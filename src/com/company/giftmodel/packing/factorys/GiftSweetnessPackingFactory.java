@@ -6,7 +6,7 @@ import com.company.giftmodel.packing.packingChildren.giftPackingChildren.GiftSwe
 public class GiftSweetnessPackingFactory implements GiftPackingFactory {
 
     @Override
-    public GiftSweetnessPacking createGiftPacking(double maxWeight, GiftPacking.TypeOfGiftPacking typeOfGiftPacking) {
-        return new GiftSweetnessPacking(maxWeight, typeOfGiftPacking);
+    public GiftSweetnessPacking createGiftPacking() {
+        return new GiftSweetnessPacking();
     }
 }

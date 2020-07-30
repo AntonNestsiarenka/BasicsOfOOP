@@ -7,7 +7,7 @@ import com.company.giftmodel.packing.packingChildren.giftPackingChildren.GiftSwe
 public class GiftSweetnessFactory implements GiftFactory {
 
     @Override
-    public Gift createGift(String name, GiftSweetnessPacking packing) {
-        return new GiftSweetness(name, packing);
+    public GiftSweetness createGift() {
+        return new GiftSweetness();
     }
 }

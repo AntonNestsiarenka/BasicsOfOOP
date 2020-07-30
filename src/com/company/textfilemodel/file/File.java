@@ -1,8 +1,13 @@
-package com.company.textfilemodel;
+package com.company.textfilemodel.file;
 
 import Utils.MyException;
+import com.company.textfilemodel.directory.Directory;
+
+import java.util.Objects;
 
 public abstract class File<T> {
+
+    /* Класс описывает файл. */
 
     private String fileName;
     private String extension;
@@ -72,6 +77,21 @@ public abstract class File<T> {
     @Override
     public String toString() {
         return fileName + "." + extension;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        File<?> file = (File<?>) o;
+        return Objects.equals(fileName, file.fileName) &&
+                Objects.equals(extension, file.extension) &&
+                Objects.equals(location, file.location);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fileName, extension, location);
     }
 
     public void printFileName()

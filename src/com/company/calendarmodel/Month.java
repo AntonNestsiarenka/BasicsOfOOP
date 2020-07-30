@@ -20,13 +20,6 @@ public enum Month {
     private int numberOfDaysInMonth;
     private int codeOfMonth;
 
-    Month() {
-        nameOfMonth = "January";
-        numberOfMonth = 1;
-        numberOfDaysInMonth = 31;
-        codeOfMonth = 5;
-    }
-
     Month(String nameOfMonth, int numberOfMonth, int numberOfDaysInMonth, int codeOfMonth)
     {
         this.nameOfMonth = nameOfMonth;

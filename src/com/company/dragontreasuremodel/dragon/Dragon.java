@@ -1,6 +1,10 @@
-package com.company.dragontreasuremodel;
+package com.company.dragontreasuremodel.dragon;
+
+import com.company.dragontreasuremodel.cave.Cave;
 
 public class Dragon {
+
+    /* Класс описывает дракона. */
 
     private String name;
     private Cave cave;

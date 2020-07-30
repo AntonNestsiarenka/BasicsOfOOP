@@ -1,4 +1,4 @@
-package com.company;
+package com.company.comon;
 
 import java.util.Objects;
 

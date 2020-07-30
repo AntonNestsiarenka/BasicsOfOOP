@@ -3,7 +3,9 @@ package com.company.calendarmodel;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Calendar {
+public final class Calendar {
+
+    /* Класс описывает календарь. */
 
     private int year;
     private ArrayList<Holiday> holidays;
@@ -28,7 +30,7 @@ public class Calendar {
             Month.FEBRUARY.setNumberOfDaysInMonth(29);
         }
         this.year = year;
-        holidays = new ArrayList<Holiday>();
+        holidays = new ArrayList<>();
     }
 
     public void addHoliday(Holiday holiday)
@@ -52,6 +54,7 @@ public class Calendar {
 
     public void fillDayOff()
     {
+        // Заполняет календарь выходными днями (суббота и воскресенье).
         for (Month month : Month.values())
         {
             for (int i = 1; i <= month.getNumberOfDaysInMonth(); i++)
@@ -72,8 +75,8 @@ public class Calendar {
 
     public void printCalendarMonth(Month month)
     {
-        DisplayCalendar displayCalendar = new DisplayCalendar(this);
-        displayCalendar.showMonthForm(month);
+        // Выводит в консоль календарь на заданный месяц.
+        DisplayCalendar.showMonthForm(month);
         HashMap<DayOfWeek, Integer> posInStr = new HashMap<>();
         int position = 1;
         int step = 6;
@@ -90,11 +93,11 @@ public class Calendar {
                 System.out.print(" ");
             if (isHoliday(i, month))
             {
-                System.out.printf("\u001B[31m" + "%2d" + "\u001B[0m", i);
+                System.out.printf(DisplayCalendar.ANSI_RED + "%2d" + DisplayCalendar.ANSI_RESET, i);
             }
             else
             {
-                System.out.printf("\u001B[30m" + "%2d" + "\u001B[0m", i);
+                System.out.printf(DisplayCalendar.ANSI_BLACK + "%2d" + DisplayCalendar.ANSI_RESET, i);
             }
             if (dayOfWeek.getNumberOfDay() != 0)
             {
@@ -111,8 +114,8 @@ public class Calendar {
 
     public void printCalendar()
     {
-        DisplayCalendar displayCalendar = new DisplayCalendar(this);
-        displayCalendar.showCalendarForm();
+        // Выводит в консоль весь календарь.
+        DisplayCalendar.showCalendarForm(this);
         for (Month month : Month.values())
         {
             printCalendarMonth(month);
@@ -122,6 +125,7 @@ public class Calendar {
 
     public void printHolidaysInfo()
     {
+        // Выводит в консоль информацию обо всех выходных и праздниках.
         sortHolidaysByNumberOfDays();
         for (Holiday holiday : holidays)
         {
@@ -139,6 +143,8 @@ public class Calendar {
     }
 
     public class Holiday implements Comparable<Holiday> {
+
+        /* Класс описывает выходной/праздничный день. */
 
         private String name;
         private int numberOfDay;
@@ -216,6 +222,7 @@ public class Calendar {
     }
 
     private DayOfWeek getDayOfWeek(int dayOfMonth, Month month, int year) {
+        // Возвращает день недели для заданного числа, месяца, года.
         int codeOfMonth;
         if ((year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) && (month == Month.JANUARY || month == Month.FEBRUARY))
         {
@@ -237,6 +244,7 @@ public class Calendar {
     }
 
     private int getCodeOfYear(int year) {
+        // Возвращает код года.
         int last2Digits = year % 100;
         int codeOfFirst2Digits = getCodeOfFirst2Digits((year - last2Digits) / 100);
         int code = (codeOfFirst2Digits + last2Digits + last2Digits / 4) % 7;
@@ -244,7 +252,8 @@ public class Calendar {
     }
 
     private int getCodeOfFirst2Digits(int number) {
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        // Возвращает код для первых двух цифр года.
+        HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0, j = 6; i < 4; i++, j -= 2)
             map.put(i, j);
         return map.get(number % 4);
@@ -252,6 +261,7 @@ public class Calendar {
 
     private boolean isHoliday(int numberOfDay, Month month)
     {
+        // Проверяет является ли заданный день месяца выходным или праздничным.
         for (Holiday holiday : holidays)
         {
             if (holiday.month.getNumberOfMonth() == month.getNumberOfMonth() && holiday.numberOfDay == numberOfDay)

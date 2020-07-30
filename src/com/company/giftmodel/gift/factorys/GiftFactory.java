@@ -5,6 +5,6 @@ import com.company.giftmodel.packing.packingChildren.giftPackingChildren.GiftSwe
 
 public interface GiftFactory {
 
-    Gift createGift(String name, GiftSweetnessPacking packing);
+    Gift createGift();
 
 }
